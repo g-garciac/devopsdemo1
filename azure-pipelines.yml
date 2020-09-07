@@ -11,11 +11,14 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  fecha: ''
 
 steps:
-- script: dotnet build src --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: 'src/DevOpsDemo1.Tests/DevOpsDemo1.Tests.csproj'
+    projects: 'src'
+
+- script: dotnet build src --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+- script: echo $(Build.BuildNumber)
