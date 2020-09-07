@@ -3,22 +3,19 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-trigger:
-- master
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-variables:
-  buildConfiguration: 'Release'
-
 stages:
-- stage: A
+- stage: Development
   jobs:
-  - job: A1
-  - job: A2
+  - job: Build
+  - job: Unit_Tests
+  - job: Static_Analysis
+  - job: Publish_Dev
+  - job: Functional_Tests
 
-- stage: B
+- stage: QA
   jobs:
-  - job: B1
-  - job: B2
+  - job: Publish_QA
+  
+- stage: UAT
+  jobs:
+  - job: Publish_UAT
