@@ -15,3 +15,7 @@ variables:
 steps:
 - script: dotnet build src --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+- task: VSTest@2
+  inputs:
+    testSelector: 'testRun'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
