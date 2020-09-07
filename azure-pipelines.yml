@@ -12,8 +12,13 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: 'src/DevOpsDemo1.Tests/DevOpsDemo1.Tests.csproj'
+stages:
+- stage: A
+  jobs:
+  - job: A1
+  - job: A2
+
+- stage: B
+  jobs:
+  - job: B1
+  - job: B2
